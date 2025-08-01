@@ -1,4 +1,4 @@
-Actually this commit was done from my "revived old samsung laptop". HOORAY!
+1) Actually this commit was done from my "revived old samsung laptop". HOORAY!
 2) This commit was intended to require no manual authentication
 3) Second commit didn't work out as automatic.
-4) This curent should be auto
+4) This current should be auto
