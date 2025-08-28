@@ -3,7 +3,7 @@ name: test some staff
 on: push
 jobs: 
   test-apple:
-    runs-on: macos-lates
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
       - name: setup c++
