@@ -2,22 +2,35 @@ name: test some staff
 
 on: push
 jobs: 
-  logging:
-    runs-on: ${{matrix.os}}
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
+  #build-ubuntu:
+  #  runs-on: ubuntu-latest
+  #  steps:
+  #    - name: Checkout code
+  #      uses: actions/checkout@v4
+
+  #    - name: Install gcc
+  #      run: sudo apt-get update && sudo apt-get install -y g++
+
+  #    - name: Compile
+  #      run: g++ -s -O3 -o main.exe main.cpp
+
+  #    - name: Run app
+  #      run: ./main.exe
+
+
+  log-windows:
+    runs-on: windows-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4  # Checkout the repository
 
-      - name: Install gcc
-        run: sudo apt-get update && sudo apt-get install -y g++
+      - name: Set up Visual Studio Build Tools
+        uses: actions/setup-msbuild@v1
 
-      - name: Compile
-        run: g++ -s -O3 -o main.exe main.cpp
+      - name: Check if Have setup file
+        run: cd "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build" && ./vcvars64.bat
 
-      - name: Run app
-        run: ./main.exe
-
+      - name: Check if have cl.exe
+        run: cl
+      
 
