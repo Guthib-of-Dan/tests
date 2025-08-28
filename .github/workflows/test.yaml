@@ -2,39 +2,44 @@ name: test some staff
 
 on: push
 jobs: 
-  test-everywhere:
-    runs-on: ${{matrix.os}}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest, macos-13]
+  has-submodule:
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: NODEJS
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22.x 
-      - name: setup c++ on windows
-        if: runner.os == 'Windows'
-        uses: aminya/setup-cpp@v1
-        with:
-          compiler: gcc
-      - name: setup c++ on Linux
-        if: runner.os == 'Linux'
-        uses: aminya/setup-cpp@v1
-        with:
-          compiler: gcc
-      - name: setup c++ on macOS
-        if: runner.os == 'macOS'
-        uses: aminya/setup-cpp@v1
-        with:
-          compiler: apple-clang
+      - uses: actions/checkout@v4
+      - run: ls ublitzjs-example
+ # test-everywhere:
+ #   runs-on: ${{matrix.os}}
+ #   strategy:
+ #     matrix:
+ #       os: [ubuntu-latest, windows-latest, macos-latest, macos-13]
+ #   steps:
+ #     - name: Checkout
+ #       uses: actions/checkout@v4
+ #     - name: NODEJS
+ #       uses: actions/setup-node@v4
+ #       with:
+ #         node-version: 22.x 
+ #     - name: setup c++ on windows
+ #       if: runner.os == 'Windows'
+ #       uses: aminya/setup-cpp@v1
+ #       with:
+ #         compiler: gcc
+ #     - name: setup c++ on Linux
+ #       if: runner.os == 'Linux'
+ #       uses: aminya/setup-cpp@v1
+ #       with:
+ #         compiler: gcc
+ #     - name: setup c++ on macOS
+ #       if: runner.os == 'macOS'
+ #       uses: aminya/setup-cpp@v1
+ #       with:
+ #         compiler: apple-clang
 
-      - name: Build
-        run: node build_and_run.mjs
+ #     - name: Build
+ #       run: node build_and_run.mjs
 
-      - name: Save binary as an artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{runner.os}}-${{runner.arch}}.exe
-          path: binary.exe
+ #     - name: Save binary as an artifact
+ #       uses: actions/upload-artifact@v4
+ #       with:
+ #         name: ${{runner.os}}-${{runner.arch}}.exe
+ #         path: binary.exe

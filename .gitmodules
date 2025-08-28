@@ -1,0 +1,3 @@
+[submodule "ublitzjs-example"]
+	path = ublitzjs-example
+	url = https://github.com/Guthib-of-Dan/ublitzjs-example.git
