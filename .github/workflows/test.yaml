@@ -10,33 +10,33 @@ jobs:
         uses: aminya/setup-cpp@v1
         with: 
           compiler: apple-clang
-      - run: clang++ -s -O3 -o main.exe main.cpp
+      - run: clang++ -s -O3 -o main.exe main.cpp && ls -l main.exe
       - run: ./main.exe
 
-  #build-ubuntu:
-  #  runs-on: ubuntu-latest
-  #  steps:
-  #    - name: Checkout code
-  #      uses: actions/checkout@v4
+  build-ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-  #    - name: Install gcc
-  #      run: sudo apt-get update && sudo apt-get install -y g++
+      - name: Install gcc
+        run: sudo apt-get update && sudo apt-get install -y g++
 
-  #    - name: Compile
-  #      run: g++ -s -O3 -o main.exe main.cpp
+      - name: Compile
+        run: g++ -s -O3 -o main.exe main.cpp && ls -l main.exe
 
-  #    - name: Run app
-  #      run: ./main.exe
+      - name: Run app
+        run: ./main.exe
 
 
-  #log-windows:
-  #  runs-on: windows-latest
-  #  steps:
-  #    - uses: actions/checkout@v4  # Checkout the repository
-  #    - name: setup c++
-  #      uses: aminya/setup-cpp@v1
-  #      with:
-  #        compiler: gcc
-  #    - name: Compile
-  #      run: g++ -s -O3 -o main.exe main.cpp
+  log-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4  
+      - name: setup c++
+        uses: aminya/setup-cpp@v1
+        with:
+          compiler: gcc
+      - name: Compile
+        run: g++ -s -O3 -o main.exe main.cpp && dir
 
