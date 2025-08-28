@@ -1,0 +1,29 @@
+name: test some staff
+
+on: push
+jobs: 
+  logging:
+    runs-on: ${{matrix.os}}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up nodejs
+        uses:  actions/setup-node@v4
+        with: 
+          node-version: 22.x
+
+      - name: run on windows
+        if: runner.os == 'Windows'
+        run: node test-win.js
+
+      - name: run on linux
+        if: runner.os == 'Linux'
+        run: node test-linux.js
+
+      - name: run on windows
+        if: runner.os == 'macOS'
+        run: node test-mac.js
