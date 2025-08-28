@@ -6,6 +6,11 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+      - name: Architecture
+        run: node arch.mjs
       - name: setup c++
         uses: aminya/setup-cpp@v1
         with: 
@@ -19,6 +24,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+      - name: Architecture
+        run: node arch.mjs
       - name: Install gcc
         run: sudo apt-get update && sudo apt-get install -y g++
 
@@ -33,6 +43,11 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4  
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+      - name: Architecture
+        run: node arch.mjs
       - name: setup c++
         uses: aminya/setup-cpp@v1
         with:
