@@ -2,6 +2,17 @@ name: test some staff
 
 on: push
 jobs: 
+  test-apple:
+    runs-on: macos-lates
+    steps:
+      - uses: actions/checkout@v4
+      - name: setup c++
+        uses: aminya/setup-cpp@v1
+        with: 
+          compiler: apple-clang
+      - run: clang++ -s -O3 -o main.exe main.cpp
+      - run: ./main.exe
+
   #build-ubuntu:
   #  runs-on: ubuntu-latest
   #  steps:
@@ -18,13 +29,14 @@ jobs:
   #      run: ./main.exe
 
 
-  log-windows:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v4  # Checkout the repository
-      - name: setup c++
-        uses: aminya/setup-cpp@v1
-        with:
-          compiler: gcc
-      - name: Compile
-        run: g++ -s -O3 -o main.exe main.cpp
+  #log-windows:
+  #  runs-on: windows-latest
+  #  steps:
+  #    - uses: actions/checkout@v4  # Checkout the repository
+  #    - name: setup c++
+  #      uses: aminya/setup-cpp@v1
+  #      with:
+  #        compiler: gcc
+  #    - name: Compile
+  #      run: g++ -s -O3 -o main.exe main.cpp
+
