@@ -2,8 +2,13 @@ name: test some staff
 
 on: push
 jobs: 
+ # test-everywhere:
+ #   runs-on: ${{matrix.os}}
+ #   strategy:
+ #     matrix:
+ #       os: [ubuntu-latest, windows-latest, macos-latest]
   test-apple:
-    runs-on: macos-latest
+    runs-on: macos-12
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -18,40 +23,40 @@ jobs:
       - run: clang++ -s -O3 -o main.exe main.cpp && ls -l main.exe
       - run: ./main.exe
 
-  build-ubuntu:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+#  build-ubuntu:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Checkout code
+#        uses: actions/checkout@v4
+#
+#      - uses: actions/setup-node@v4
+#        with:
+#          node-version: 22.x
+#      - name: Architecture
+#        run: node arch.mjs
+#      - name: Install gcc
+#        run: sudo apt-get update && sudo apt-get install -y g++
+#
+#      - name: Compile
+#        run: g++ -s -O3 -o main.exe main.cpp && ls -l main.exe
+#
+#      - name: Run app
+#        run: ./main.exe
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22.x
-      - name: Architecture
-        run: node arch.mjs
-      - name: Install gcc
-        run: sudo apt-get update && sudo apt-get install -y g++
 
-      - name: Compile
-        run: g++ -s -O3 -o main.exe main.cpp && ls -l main.exe
-
-      - name: Run app
-        run: ./main.exe
-
-
-  log-windows:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v4  
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22.x
-      - name: Architecture
-        run: node arch.mjs
-      - name: setup c++
-        uses: aminya/setup-cpp@v1
-        with:
-          compiler: gcc
-      - name: Compile
-        run: g++ -s -O3 -o main.exe main.cpp && dir
-
+#  log-windows:
+#    runs-on: windows-latest
+#    steps:
+#      - uses: actions/checkout@v4  
+#      - uses: actions/setup-node@v4
+#        with:
+#          node-version: 22.x
+#      - name: Architecture
+#        run: node arch.mjs
+#      - name: setup c++
+#        uses: aminya/setup-cpp@v1
+#        with:
+#          compiler: gcc
+#      - name: Compile
+#        run: g++ -s -O3 -o main.exe main.cpp && dir
+#
